@@ -482,11 +482,111 @@
       },
       "requestVariables": [],
       "responses": {}
+    },
+    {
+      "v": "13",
+      "name": "Toggle like on a podcast",
+      "method": "GET",
+      "endpoint": "https://echo.hoppscotch.io",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": null,
+        "body": null
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "13",
+      "name": " Get random podcasts (paginated)",
+      "method": "GET",
+      "endpoint": "https://echo.hoppscotch.io",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": null,
+        "body": null
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "13",
+      "name": "Get all categories",
+      "method": "GET",
+      "endpoint": "https://echo.hoppscotch.io",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": null,
+        "body": null
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "13",
+      "name": "Get podcasts by category",
+      "method": "GET",
+      "endpoint": "https://echo.hoppscotch.io",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": null,
+        "body": null
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "13",
+      "name": "Create a new category",
+      "method": "GET",
+      "endpoint": "https://echo.hoppscotch.io",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": null,
+        "body": null
+      },
+      "requestVariables": [],
+      "responses": {}
     }
   ],
   "auth": {
-    "authActive": true,
-    "authType": "none"
+    "authType": "none",
+    "authActive": true
   },
   "headers": [],
   "_ref_id": "coll_mbb8kjj0_090efe43-a5a4-43f9-9ad2-b444bd9e2ccb"

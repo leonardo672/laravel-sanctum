@@ -10,7 +10,7 @@ use App\Http\Controllers\UserMediaController;
 use App\Http\Controllers\ChannelController;
 use App\Http\Controllers\PodcastController;
 use App\Http\Controllers\CommentController;
-
+use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -38,6 +38,9 @@ Route::get('/validate-reset-token', [PasswordResetController::class, 'validatePa
 Route::post('/reset-password', [PasswordResetController::class, 'updatePassword']);
 // Route::post('/verify-2fa', [TwoFactorAuthController::class, 'verify2fa']);
 Route::middleware('auth:sanctum')->post('/verify-2fa', [TwoFactorAuthController::class, 'verify2fa']);
+
+// Fetch random podcasts with pagination
+Route::get('/podcasts/random', [PodcastController::class, 'random']);
 
 
 // Authenticated routes
@@ -68,12 +71,28 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/podcasts', [PodcastController::class, 'index']);
 
+    // Show a single podcast with comments and nested replies
+    Route::get('/podcasts/{id}/with-comments', [PodcastController::class, 'showWithComments']);
+
     // Get all podcasts by a specific user
     Route::get('/users/{id}/podcasts', [PodcastController::class, 'userPodcasts']);
 
     Route::get('/podcasts/{podcast}/comments', [CommentController::class, 'index']);
     Route::post('/podcasts/{podcast}/comments', [CommentController::class, 'store']);
     Route::delete('/comments/{comment}', [CommentController::class, 'destroy']);
+
+    // Toggle like/unlike on a podcast
+    Route::post('/podcasts/{id}/like', [PodcastController::class, 'toggleLike']);
+
+    // Get all categories (optional)
+    Route::get('/categories', [CategoryController::class, 'index']);
+
+    // Get podcasts by category (optional)
+    Route::get('/categories/{id}/podcasts', [CategoryController::class, 'podcasts']);
+    // Create a new category
+    Route::post('/categories', [CategoryController::class, 'store']);
+
+
 
 });
 
