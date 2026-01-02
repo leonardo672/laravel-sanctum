@@ -4,8 +4,6 @@
 
 In this task, we aim to build a **fully integrated authentication system** using **Laravel Sanctum**, following modern security and API authentication best practices.
 
----
-
 ## V1 Requirements
 
 ### 🔐 Registration
@@ -54,8 +52,6 @@ In this task, we aim to build a **fully integrated authentication system** using
 ## V2 Requirements / Updates
 The second version of the task extends the authentication system by improving stability, security, and account recovery features.
 
----
-
 ### 1️⃣ Bug Fixes & Improvements
 - Fix all errors and issues identified during the **previous task discussion session**
 - Improve code quality, validation, and overall system reliability
@@ -97,8 +93,6 @@ The second version of the task extends the authentication system by improving st
 ## V3 Requirements / Updates
 
 The third version focuses on improving **error handling** and implementing **advanced database relationships** in Laravel.
-
----
 
 ### 1️⃣ Exceptions
 - Research the concept of **exceptions** in Laravel and how they are handled in your current Laravel version.
