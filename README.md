@@ -163,3 +163,52 @@ The fifth version of the project focuses on **content interaction**, **media enr
 - A more complete and user-centered content platform
 - JSON-based APIs ensure compatibility with frontend clients and mobile apps
 
+----
+
+## V6 Requirements / Updates
+
+The sixth version focuses on **data seeding**, **advanced querying**, and **content discovery features** to enhance scalability and user experience.
+
+### 1️⃣ Factories & Seeders
+- Create **Factories and Seeders** for the following models:
+  - Comments
+  - Podcasts
+- Ensure that:
+  - Each podcast is assigned a **random number of comments**
+  - Comment data supports nested replies where applicable
+- Enables realistic test data for development and testing environments
+
+### 2️⃣ Podcast Details Endpoint
+- Create an API endpoint to retrieve a **single podcast** along with all of its comments
+- The response must include:
+  - Top-level comments
+  - Nested comments (replies to comments)
+- Ensures efficient data loading and structured JSON responses
+
+### 3️⃣ Podcast Likes
+- Add the ability for users to **like podcasts**
+- Implement the feature using a **clean and efficient approach**, such as:
+  - Pivot tables
+  - Optimized queries
+  - Proper relationship design
+- Prevent duplicate likes from the same user
+
+### 4️⃣ Podcast Categories
+- Add **categories** to podcasts
+- Define and implement the appropriate relationship between:
+  - Podcasts
+  - Categories
+- Enable podcasts to belong to one or multiple categories, as required by the design
+
+### 5️⃣ Random Podcasts Listing
+- Create an endpoint to fetch a **random list of podcasts**
+- Requirements:
+  - Pagination support
+  - Consistent performance
+  - Clean and predictable API responses
+
+### Outcome
+- Realistic seeded data for testing and demos
+- Optimized endpoints for podcast retrieval and discovery
+- Enhanced user engagement through likes and categorization
+- Scalable backend architecture ready for production use

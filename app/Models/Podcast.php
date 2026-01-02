@@ -17,5 +17,21 @@ class Podcast extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function likedBy()
+    {
+        return $this->belongsToMany(User::class, 'likes')->withTimestamps();
+    }
+
+    public function getLikesCountAttribute()
+    {
+        return $this->likedBy()->count();
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
+
     
 }

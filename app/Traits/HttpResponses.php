@@ -2,53 +2,66 @@
 
 namespace App\Traits;
 
-trait HttpResponses {
+use Illuminate\Http\JsonResponse;
+
+trait HttpResponses
+{
     /**
-     * Successful HTTP response
+     * Return a JSON success response.
      */
     protected function success(
         mixed $data = null,
-        ?string $message = null,
+        ?string $message = 'Request successful',
         int $code = 200
-    ) {
+    ): JsonResponse {
         return response()->json([
             'status' => 'success',
             'message' => $message,
-            'data' => $data
-        ], $code);
-    }
-    
-    /**
-     * Error HTTP response
-     */
-    protected function error(
-        ?string $message = null,
-        int $code = 400,
-        mixed $data = null
-    ) {
-        return response()->json([
-            'status' => 'error',
-            'message' => $message,
-            'data' => $data
+            'data' => $data,
+            'errors' => null
         ], $code);
     }
 
     /**
-     * Resource created response (201)
+     * Return a JSON error response.
+     */
+    protected function error(
+        ?string $message = 'Something went wrong',
+        int $code = 400,
+        mixed $errors = null
+    ): JsonResponse {
+        return response()->json([
+            'status' => 'error',
+            'message' => $message,
+            'data' => null,
+            'errors' => $errors
+        ], $code);
+    }
+
+    /**
+     * Return a JSON 201 created response.
      */
     protected function created(
         mixed $data = null,
         ?string $message = 'Resource created successfully'
-    ) {
+    ): JsonResponse {
         return $this->success($data, $message, 201);
     }
 
     /**
-     * Not found response (404)
+     * Return a JSON 404 not found response.
      */
     protected function notFound(
         ?string $message = 'Resource not found'
-    ) {
+    ): JsonResponse {
         return $this->error($message, 404);
+    }
+
+    /**
+     * Return a 204 No Content response.
+     */
+    protected function noContent(): JsonResponse
+    {
+        return response()->json(null, 204);
     }
 }

@@ -51,7 +51,14 @@ class User extends Authenticatable
     public function channel()
     {
         return $this->hasOne(Channel::class);
+        
     }
+
+    public function likedPodcasts()
+    {
+        return $this->belongsToMany(Podcast::class, 'likes')->withTimestamps();
+    }
+
 
 
 }
