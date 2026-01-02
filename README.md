@@ -49,7 +49,6 @@ In this task, we aim to build a **fully integrated authentication system** using
   - A new token is issued
 - Ensures continuous and secure authenticated sessions
 
-  ---
 
 ## V2 Requirements / Updates
 The second version of the task extends the authentication system by improving stability, security, and account recovery features.
@@ -92,7 +91,6 @@ The second version of the task extends the authentication system by improving st
   3. The user must enter the code to complete the login process
 - Ensures enhanced protection against unauthorized access
 
----
 
 ## V3 Requirements / Updates
 
@@ -128,4 +126,4 @@ The third version focuses on improving **error handling** and implementing **adv
 - Foundation for future media handling beyond just user images
 
 
----
+
