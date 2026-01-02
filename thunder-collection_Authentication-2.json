@@ -1,0 +1,377 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "Authentication",
+    "collectionId": "94f9ec48-c320-4886-b8cc-481cb42a12e1",
+    "dateExported": "2025-04-30T18:31:14.304Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "be05b58f-52a8-4921-a104-496b08a18d7b",
+            "colId": "94f9ec48-c320-4886-b8cc-481cb42a12e1",
+            "containerId": "",
+            "name": "http://127.0.0.1:8000/api/register",
+            "url": "http://127.0.0.1:8000/api/register",
+            "method": "POST",
+            "sortNum": 5000,
+            "created": "2025-04-20T10:47:09.022Z",
+            "modified": "2025-04-30T18:26:48.910Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"dansx\",\n  \"email\": \"dansx@example.com\",\n  \"password\": \"Password123!!\",\n\t\"password_confirmation\": \"Password123!!\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "1641836e-2b18-4ab2-8138-666be67eb052",
+            "colId": "94f9ec48-c320-4886-b8cc-481cb42a12e1",
+            "containerId": "",
+            "name": "http://127.0.0.1:8000/api/verify-code",
+            "url": "http://127.0.0.1:8000/api/verify-code",
+            "method": "POST",
+            "sortNum": 6250,
+            "created": "2025-04-20T14:31:28.168Z",
+            "modified": "2025-04-30T18:27:10.525Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"dansx@example.com\",\n  \"code\": \"901341\"  \n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "186d46bd-7e5c-4d97-8a50-814de9cd7dbe",
+            "colId": "94f9ec48-c320-4886-b8cc-481cb42a12e1",
+            "containerId": "",
+            "name": "http://127.0.0.1:8000/api/resend-code",
+            "url": "http://127.0.0.1:8000/api/resend-code",
+            "method": "POST",
+            "sortNum": 7500,
+            "created": "2025-04-20T14:29:56.160Z",
+            "modified": "2025-04-30T15:45:07.505Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"dan@example.com\"\n}\n\n",
+                "form": []
+            }
+        },
+        {
+            "_id": "41c6e7b7-ab19-4319-9f4e-25347b3483bb",
+            "colId": "94f9ec48-c320-4886-b8cc-481cb42a12e1",
+            "containerId": "",
+            "name": "http://127.0.0.1:8000/api/login",
+            "url": "http://127.0.0.1:8000/api/login",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2025-04-20T10:46:56.282Z",
+            "modified": "2025-04-30T18:28:40.732Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "*/*",
+                    "isDisabled": true
+                },
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"dansx@example.com\",\n  \"password\": \"Password123!!\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "c080c4cf-ab22-4b94-b8a4-0d0eb1ac0243",
+            "colId": "94f9ec48-c320-4886-b8cc-481cb42a12e1",
+            "containerId": "",
+            "name": "http://127.0.0.1:8000/api/refresh-token",
+            "url": "http://127.0.0.1:8000/api/refresh-token",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2025-04-20T16:18:28.182Z",
+            "modified": "2025-04-30T15:50:23.672Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "*/*",
+                    "isDisabled": true
+                },
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"refresh_token\": \"Z4uo6DklsVtzuZqAIPPBO31LgcsV44ESQV2n3rpY74bzbOJ2hE2ANZG3hdjU\"\n}\n",
+                "form": []
+            }
+        },
+        {
+            "_id": "3c81dfb3-e687-4605-9dda-58a3660618de",
+            "colId": "94f9ec48-c320-4886-b8cc-481cb42a12e1",
+            "containerId": "",
+            "name": "http://127.0.0.1:8000/api/forgot-password",
+            "url": "http://127.0.0.1:8000/api/forgot-password",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2025-04-29T11:13:38.814Z",
+            "modified": "2025-04-30T16:14:12.326Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "*/*",
+                    "isDisabled": true
+                },
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"dans@example.com\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "1f5b14eb-e685-4cdd-b809-8c8e847a3450",
+            "colId": "94f9ec48-c320-4886-b8cc-481cb42a12e1",
+            "containerId": "",
+            "name": "http://127.0.0.1:8000/api/Get Authenticated User",
+            "url": "http://127.0.0.1:8000/api/user",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2025-04-30T15:53:03.308Z",
+            "modified": "2025-04-30T16:14:00.258Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "*/*",
+                    "isDisabled": true
+                },
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"dan@example.com\",\n  \"password\": \"Password123!!\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "21|100wBUhPQwtA7M1wHJnuRo440wnICM750lykmjVj61d8950d"
+            }
+        },
+        {
+            "_id": "d78b786d-71ad-4ed3-be20-536417ab7850",
+            "colId": "94f9ec48-c320-4886-b8cc-481cb42a12e1",
+            "containerId": "",
+            "name": "http://127.0.0.1:8000/api/logout",
+            "url": "http://127.0.0.1:8000/api/logout",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2025-04-20T11:20:18.561Z",
+            "modified": "2025-04-29T20:08:27.788Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "*/*",
+                    "isDisabled": true
+                },
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "name": "Authorization",
+                    "value": "",
+                    "isDisabled": true
+                }
+            ],
+            "auth": {
+                "type": "bearer",
+                "bearer": "15|fWPEpMmqmR3QbHlCv1UqfcnnaaqP8kp2iqxMx6iE278606ff"
+            }
+        },
+        {
+            "_id": "6145c441-28a4-4431-b67f-9e45c349ed4d",
+            "colId": "94f9ec48-c320-4886-b8cc-481cb42a12e1",
+            "containerId": "",
+            "name": "http://127.0.0.1:8000/api/validate-reset-token",
+            "url": "http://127.0.0.1:8000/api/validate-reset-token?token=pxahMZkfWLHGljbYdvO4C4LN1j6Uow2eX3BZV7rveF3DAAX04wo26jcR5O6s",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2025-04-29T11:18:05.078Z",
+            "modified": "2025-04-30T16:14:35.599Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "*/*",
+                    "isDisabled": true
+                },
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "params": [
+                {
+                    "name": "token",
+                    "value": "pxahMZkfWLHGljbYdvO4C4LN1j6Uow2eX3BZV7rveF3DAAX04wo26jcR5O6s",
+                    "isPath": false
+                }
+            ]
+        },
+        {
+            "_id": "8d2c8e82-14b6-402c-a6c1-0ddd216b94b5",
+            "colId": "94f9ec48-c320-4886-b8cc-481cb42a12e1",
+            "containerId": "",
+            "name": "http://127.0.0.1:8000/api/reset-password",
+            "url": "http://127.0.0.1:8000/api/reset-password",
+            "method": "POST",
+            "sortNum": 31250,
+            "created": "2025-04-29T11:20:53.765Z",
+            "modified": "2025-04-30T16:15:00.345Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "*/*",
+                    "isDisabled": true
+                },
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"token\": \"pxahMZkfWLHGljbYdvO4C4LN1j6Uow2eX3BZV7rveF3DAAX04wo26jcR5O6s\",\n  \"password\": \"21!788789654\",\n  \"password_confirmation\": \"21!788789654\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "e361fecf-b126-46a2-b0a1-55b535aec3dd",
+            "colId": "94f9ec48-c320-4886-b8cc-481cb42a12e1",
+            "containerId": "",
+            "name": "http://127.0.0.1:8000/api/toggle-2fa",
+            "url": "http://127.0.0.1:8000/api/toggle-2fa",
+            "method": "POST",
+            "sortNum": 31875,
+            "created": "2025-04-29T11:22:50.742Z",
+            "modified": "2025-04-30T18:29:55.896Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "*/*",
+                    "isDisabled": true
+                },
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "auth": {
+                "type": "bearer",
+                "bearer": "27|2dCpwzeVGmIoODhcfdVS6qIPYJEncBVZOH24XK2Hecef6f82"
+            }
+        },
+        {
+            "_id": "fa071ae8-b4d1-442a-bd50-5082846eb025",
+            "colId": "94f9ec48-c320-4886-b8cc-481cb42a12e1",
+            "containerId": "",
+            "name": "http://127.0.0.1:8000/api/verify-2fa",
+            "url": "http://127.0.0.1:8000/api/verify-2fa",
+            "method": "POST",
+            "sortNum": 32500,
+            "created": "2025-04-29T11:33:48.021Z",
+            "modified": "2025-04-30T16:23:17.173Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "*/*",
+                    "isDisabled": true
+                },
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"dans@example.com\",\n  \"password\": \"21!788789654\",\n  \"code\":\"977665\"\n}",
+                "form": []
+            }
+        }
+    ],
+    "ref": "XULtNlXP-osA8XTZw2fSjqnIrluxruDuZN5GYP9KTF66ZST6OyEr9g1kYVxf5Y3YBwXLH85tJi5f51Zpu7RJqw"
+}

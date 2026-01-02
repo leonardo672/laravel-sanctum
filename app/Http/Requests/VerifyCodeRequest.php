@@ -12,10 +12,12 @@ class VerifyCodeRequest extends FormRequest
         return true;
     }
 
+    // VerifyCodeRequest rules
     public function rules()
     {
         return [
-            'email' => 'required|email|exists:users,email',
+            'email' => 'sometimes|required|email|exists:users,email',
+            'password' => 'sometimes|required|string',
             'code' => 'required|digits:6'
         ];
     }
