@@ -22,18 +22,18 @@ class TwoFactorAuthController extends Controller
     public function verify2fa(VerifyCodeRequest $request)
     {
         if (!Auth::check()) {
-            if (!$request->has(['email', 'password'])) {
+            if (!$request->has(['email', 'password'])) { // Checks if the request is missing the email or password fields (just presence, not correctness).
                 return $this->error('', 'Authentication credentials required', 401);
             }
     
-            if (!Auth::attempt($request->only(['email', 'password']))) {
+            if (!Auth::attempt($request->only(['email', 'password']))) { // Retrieves only the email and password fields from the request data (ignores all other inputs).
                 return $this->error('', 'Invalid credentials', 401);
             }
         }
     
-        $user = $request->user() ?? Auth::user();
-        $ip = $request->ip();
-        $userAgent = $request->userAgent();
+        $user = $request->user() ?? Auth::user(); // Get the authenticated user from the request; if not found, fallback to Auth::user().
+        $ip = $request->ip(); // Get the IP address of the incoming request.
+        $userAgent = $request->userAgent(); // Get the browser/device info of the request sender (User-Agent string).
     
         if ($request->bearerToken()) {
             $token = $user->currentAccessToken();
@@ -49,17 +49,17 @@ class TwoFactorAuthController extends Controller
         }
     
         $redisKey = "vc:{$user->id}";
-        [$storedCode, $deleted] = Redis::multi()
-            ->get($redisKey)
-            ->del($redisKey)
-            ->exec();
+        [$storedCode, $deleted] = Redis::multi() // Redis transaction block
+            ->get($redisKey) // get the key - 1.Read the stored code from Redis (get)
+            ->del($redisKey) // delete the key - 2.Immediately delete it so it can’t be reused (del)
+            ->exec();        // run as a single, indivisible operation 
     
-        if (!$storedCode || !hash_equals((string)$storedCode, (string)$request->code)) {
+        if (!$storedCode || !hash_equals((string)$storedCode, (string)$request->code)) { // The code in the request doesn't securely match the stored code (hash_equals prevents timing attacks by comparing both strings safely).
             Log::warning('Invalid 2FA attempt', [
                 'user_id' => $user->id,
                 'ip' => $ip,
                 'failed_code' => $request->code,
-                'expected_code' => $storedCode ? '****' . substr($storedCode, -2) : null
+                'expected_code' => $storedCode ? '****' . substr($storedCode, -2) : null // If $storedCode exists (not null or false), show only its last 2 digits, hiding the rest with '****'. If it doesn't exist, return null.
             ]);
             return $this->error('', 'Invalid or expired verification code', 422);
         }

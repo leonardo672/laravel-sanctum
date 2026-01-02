@@ -2,7 +2,7 @@
     "clientName": "Thunder Client",
     "collectionName": "Authentication",
     "collectionId": "94f9ec48-c320-4886-b8cc-481cb42a12e1",
-    "dateExported": "2025-04-30T18:31:14.304Z",
+    "dateExported": "2025-05-07T17:39:20.069Z",
     "version": "1.2",
     "folders": [],
     "requests": [
@@ -15,7 +15,7 @@
             "method": "POST",
             "sortNum": 5000,
             "created": "2025-04-20T10:47:09.022Z",
-            "modified": "2025-04-30T18:26:48.910Z",
+            "modified": "2025-05-06T19:18:05.061Z",
             "headers": [
                 {
                     "name": "Accept",
@@ -28,7 +28,7 @@
             ],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"name\": \"dansx\",\n  \"email\": \"dansx@example.com\",\n  \"password\": \"Password123!!\",\n\t\"password_confirmation\": \"Password123!!\"\n}",
+                "raw": "{\n  \"name\": \"ERT11\",\n  \"email\": \"ERT11@example.com\",\n  \"password\": \"Password123!!\",\n\t\"password_confirmation\": \"Password123!!\"\n}",
                 "form": []
             }
         },
@@ -41,7 +41,7 @@
             "method": "POST",
             "sortNum": 6250,
             "created": "2025-04-20T14:31:28.168Z",
-            "modified": "2025-04-30T18:27:10.525Z",
+            "modified": "2025-05-06T19:47:39.400Z",
             "headers": [
                 {
                     "name": "Accept",
@@ -54,7 +54,7 @@
             ],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"email\": \"dansx@example.com\",\n  \"code\": \"901341\"  \n}",
+                "raw": "{\n  \"email\": \"ERT11@example.com\",\n  \"code\": \"681713\"  \n}",
                 "form": []
             }
         },
@@ -67,7 +67,7 @@
             "method": "POST",
             "sortNum": 7500,
             "created": "2025-04-20T14:29:56.160Z",
-            "modified": "2025-04-30T15:45:07.505Z",
+            "modified": "2025-05-06T19:45:23.462Z",
             "headers": [
                 {
                     "name": "Accept",
@@ -80,7 +80,7 @@
             ],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"email\": \"dan@example.com\"\n}\n\n",
+                "raw": "{\n  \"email\": \"ERT11@example.com\"\n}\n\n",
                 "form": []
             }
         },
@@ -93,7 +93,7 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2025-04-20T10:46:56.282Z",
-            "modified": "2025-04-30T18:28:40.732Z",
+            "modified": "2025-05-06T23:07:28.063Z",
             "headers": [
                 {
                     "name": "Accept",
@@ -111,7 +111,7 @@
             ],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"email\": \"dansx@example.com\",\n  \"password\": \"Password123!!\"\n}",
+                "raw": "{\n  \"email\": \"ERT11@example.com\",\n  \"password\": \"21!788789654\"\n}",
                 "form": []
             }
         },
@@ -124,7 +124,7 @@
             "method": "POST",
             "sortNum": 20000,
             "created": "2025-04-20T16:18:28.182Z",
-            "modified": "2025-04-30T15:50:23.672Z",
+            "modified": "2025-05-06T20:52:12.585Z",
             "headers": [
                 {
                     "name": "Accept",
@@ -142,7 +142,7 @@
             ],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"refresh_token\": \"Z4uo6DklsVtzuZqAIPPBO31LgcsV44ESQV2n3rpY74bzbOJ2hE2ANZG3hdjU\"\n}\n",
+                "raw": "{\n  \"refresh_token\": \"3Pxty28XJsYRY0QDRsmGNkdx8qRM5MRk6JSJueds6qvo1zPps9sS6rlMwYNp\"\n}\n",
                 "form": []
             }
         },
@@ -155,7 +155,7 @@
             "method": "POST",
             "sortNum": 20000,
             "created": "2025-04-29T11:13:38.814Z",
-            "modified": "2025-04-30T16:14:12.326Z",
+            "modified": "2025-05-06T22:52:57.386Z",
             "headers": [
                 {
                     "name": "Accept",
@@ -173,7 +173,7 @@
             ],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"email\": \"dans@example.com\"\n}",
+                "raw": "{\n  \"email\": \"ERT11@example.com\"\n}",
                 "form": []
             }
         },
@@ -186,7 +186,37 @@
             "method": "GET",
             "sortNum": 20000,
             "created": "2025-04-30T15:53:03.308Z",
-            "modified": "2025-04-30T16:14:00.258Z",
+            "modified": "2025-05-07T17:19:29.597Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "*/*",
+                    "isDisabled": true
+                },
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "auth": {
+                "type": "bearer",
+                "bearer": "6|ZEfP9Vt2QtEDD984kEC2kAfFlDq6r94hoy8XAPLO98ee4a7e"
+            }
+        },
+        {
+            "_id": "5c1be028-0ae4-46e8-b235-32b38e23bbc4",
+            "colId": "94f9ec48-c320-4886-b8cc-481cb42a12e1",
+            "containerId": "",
+            "name": "http://127.0.0.1:8000/api/Upload_Profile_Picture",
+            "url": "http://127.0.0.1:8000/api/users/2/media",
+            "method": "POST",
+            "sortNum": 25000,
+            "created": "2025-05-07T17:04:09.060Z",
+            "modified": "2025-05-07T17:36:18.270Z",
             "headers": [
                 {
                     "name": "Accept",
@@ -203,13 +233,14 @@
                 }
             ],
             "body": {
-                "type": "json",
-                "raw": "{\n  \"email\": \"dan@example.com\",\n  \"password\": \"Password123!!\"\n}",
-                "form": []
+                "type": "binary",
+                "raw": "",
+                "form": [],
+                "binary": "d:\\222.jpg"
             },
             "auth": {
                 "type": "bearer",
-                "bearer": "21|100wBUhPQwtA7M1wHJnuRo440wnICM750lykmjVj61d8950d"
+                "bearer": "7|1YIimhUFqHssScJHkQ7BMDFsG7nKpEKrfKH28L2ne74f035c"
             }
         },
         {
@@ -221,7 +252,7 @@
             "method": "POST",
             "sortNum": 30000,
             "created": "2025-04-20T11:20:18.561Z",
-            "modified": "2025-04-29T20:08:27.788Z",
+            "modified": "2025-05-05T16:24:49.615Z",
             "headers": [
                 {
                     "name": "Accept",
@@ -244,7 +275,7 @@
             ],
             "auth": {
                 "type": "bearer",
-                "bearer": "15|fWPEpMmqmR3QbHlCv1UqfcnnaaqP8kp2iqxMx6iE278606ff"
+                "bearer": "42|7zEAdLvA34P8q3jD7v2QQ0clxq5ux3nrOk7emyYb9cc555f0"
             }
         },
         {
@@ -252,11 +283,11 @@
             "colId": "94f9ec48-c320-4886-b8cc-481cb42a12e1",
             "containerId": "",
             "name": "http://127.0.0.1:8000/api/validate-reset-token",
-            "url": "http://127.0.0.1:8000/api/validate-reset-token?token=pxahMZkfWLHGljbYdvO4C4LN1j6Uow2eX3BZV7rveF3DAAX04wo26jcR5O6s",
+            "url": "http://127.0.0.1:8000/api/validate-reset-token?token=Z9URFy90yuh4ILGTgDPmQo7bIDEswSfG58By6epS9OSysbDBq7HKCYcpGzXz",
             "method": "GET",
             "sortNum": 30000,
             "created": "2025-04-29T11:18:05.078Z",
-            "modified": "2025-04-30T16:14:35.599Z",
+            "modified": "2025-05-06T23:06:02.978Z",
             "headers": [
                 {
                     "name": "Accept",
@@ -275,7 +306,7 @@
             "params": [
                 {
                     "name": "token",
-                    "value": "pxahMZkfWLHGljbYdvO4C4LN1j6Uow2eX3BZV7rveF3DAAX04wo26jcR5O6s",
+                    "value": "Z9URFy90yuh4ILGTgDPmQo7bIDEswSfG58By6epS9OSysbDBq7HKCYcpGzXz",
                     "isPath": false
                 }
             ]
@@ -289,7 +320,7 @@
             "method": "POST",
             "sortNum": 31250,
             "created": "2025-04-29T11:20:53.765Z",
-            "modified": "2025-04-30T16:15:00.345Z",
+            "modified": "2025-05-06T23:07:14.906Z",
             "headers": [
                 {
                     "name": "Accept",
@@ -307,7 +338,7 @@
             ],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"token\": \"pxahMZkfWLHGljbYdvO4C4LN1j6Uow2eX3BZV7rveF3DAAX04wo26jcR5O6s\",\n  \"password\": \"21!788789654\",\n  \"password_confirmation\": \"21!788789654\"\n}",
+                "raw": "{\n  \"token\": \"Z9URFy90yuh4ILGTgDPmQo7bIDEswSfG58By6epS9OSysbDBq7HKCYcpGzXz\",\n  \"password\": \"21!788789654\",\n  \"password_confirmation\": \"21!788789654\"\n}",
                 "form": []
             }
         },
@@ -320,7 +351,7 @@
             "method": "POST",
             "sortNum": 31875,
             "created": "2025-04-29T11:22:50.742Z",
-            "modified": "2025-04-30T18:29:55.896Z",
+            "modified": "2025-05-06T23:08:35.725Z",
             "headers": [
                 {
                     "name": "Accept",
@@ -338,7 +369,7 @@
             ],
             "auth": {
                 "type": "bearer",
-                "bearer": "27|2dCpwzeVGmIoODhcfdVS6qIPYJEncBVZOH24XK2Hecef6f82"
+                "bearer": "3|9GGi6dMIAZIo8KTJ0eghL7rNjDhLnszI0N4Lo20Mbcce6913"
             }
         },
         {
@@ -371,7 +402,67 @@
                 "raw": "{\n  \"email\": \"dans@example.com\",\n  \"password\": \"21!788789654\",\n  \"code\":\"977665\"\n}",
                 "form": []
             }
+        },
+        {
+            "_id": "3e5301a8-49b9-46ab-a4e0-53f3f184940f",
+            "colId": "94f9ec48-c320-4886-b8cc-481cb42a12e1",
+            "containerId": "",
+            "name": "http://127.0.0.1:8000/api/Get-Profile-Picture",
+            "url": "http://127.0.0.1:8000/api/users/2/media",
+            "method": "GET",
+            "sortNum": 35000,
+            "created": "2025-05-07T17:11:13.017Z",
+            "modified": "2025-05-07T17:36:42.487Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "*/*",
+                    "isDisabled": true
+                },
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "auth": {
+                "type": "bearer",
+                "bearer": "7|1YIimhUFqHssScJHkQ7BMDFsG7nKpEKrfKH28L2ne74f035c"
+            }
+        },
+        {
+            "_id": "b3da3906-3421-4129-847d-771b8da31d05",
+            "colId": "94f9ec48-c320-4886-b8cc-481cb42a12e1",
+            "containerId": "",
+            "name": "http://127.0.0.1:8000/api/Delete-Profile-Picture",
+            "url": "http://127.0.0.1:8000/api/users/2/media",
+            "method": "DELETE",
+            "sortNum": 45000,
+            "created": "2025-05-07T17:15:48.886Z",
+            "modified": "2025-05-07T17:38:53.489Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "*/*",
+                    "isDisabled": true
+                },
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "auth": {
+                "type": "bearer",
+                "bearer": "3|9GGi6dMIAZIo8KTJ0eghL7rNjDhLnszI0N4Lo20Mbcce6913"
+            }
         }
     ],
-    "ref": "XULtNlXP-osA8XTZw2fSjqnIrluxruDuZN5GYP9KTF66ZST6OyEr9g1kYVxf5Y3YBwXLH85tJi5f51Zpu7RJqw"
+    "ref": "XULtNlXP-osA8XTZw2fSjvS8FE1asLiT6Ay_2du39Ke3eLncchlK3_HRx35h7PAMkOv9RIiQ6LZrct9oQS_Twg"
 }
