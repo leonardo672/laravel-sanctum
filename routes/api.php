@@ -9,6 +9,7 @@ use App\Http\Controllers\TwoFactorAuthController;
 use App\Http\Controllers\UserMediaController; 
 use App\Http\Controllers\ChannelController;
 use App\Http\Controllers\PodcastController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +36,9 @@ Route::post('/refresh-token', [AuthController::class, 'refreshToken']);
 Route::post('/forgot-password', [PasswordResetController::class, 'requestPasswordReset']);
 Route::get('/validate-reset-token', [PasswordResetController::class, 'validatePasswordResetToken']);
 Route::post('/reset-password', [PasswordResetController::class, 'updatePassword']);
-Route::post('/verify-2fa', [TwoFactorAuthController::class, 'verify2fa']);
+// Route::post('/verify-2fa', [TwoFactorAuthController::class, 'verify2fa']);
+Route::middleware('auth:sanctum')->post('/verify-2fa', [TwoFactorAuthController::class, 'verify2fa']);
+
 
 // Authenticated routes
 Route::middleware('auth:sanctum')->group(function () {
@@ -43,7 +46,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/toggle-2fa', [TwoFactorAuthController::class, 'toggle2fa']);
     
     // Add these new media routes within the auth group
-    Route::prefix('users/{user}')->group(function () {
+    Route::prefix('users/{userId}')->group(function () {
         // Upload/update profile picture
         Route::post('/media', [UserMediaController::class, 'store']);
         
@@ -67,6 +70,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Get all podcasts by a specific user
     Route::get('/users/{id}/podcasts', [PodcastController::class, 'userPodcasts']);
+
+    Route::get('/podcasts/{podcast}/comments', [CommentController::class, 'index']);
+    Route::post('/podcasts/{podcast}/comments', [CommentController::class, 'store']);
+    Route::delete('/comments/{comment}', [CommentController::class, 'destroy']);
 
 });
 

@@ -132,5 +132,34 @@ The fourth version of the project focuses on **advanced error handling** and the
 ### Outcome
 - Improved error handling with clear, consistent responses
 - Extended user functionality with a **personalized content publishing platform**
+
+-----
+
+## V5 Requirements / Updates
+
+The fifth version of the project focuses on **content interaction**, **media enrichment**, and overall system refinement.
+
+### 1️⃣ Fixes & Improvements
+- Resolve all errors and issues identified during the **previous task discussion session**
+- Improve performance, validation, and API stability
+
+### 2️⃣ Podcast Upload & Media Support
+- Allow users to **upload their own podcasts**
+- Each podcast may include:
+  - Audio file
+  - Optional **cover image**
+- Ensure proper validation and secure storage of uploaded media files
+
+### 3️⃣ Podcast Comments System
+- Enable users to **comment on podcasts**
+- Implement a **nested commenting system**, allowing:
+  - Replies to comments
+  - Replies to existing replies (threaded discussions)
+- Supports structured conversations and user engagement
+
+### Outcome
+- Rich podcast content with media customization
+- Interactive community features through threaded comments
+- A more complete and user-centered content platform
 - JSON-based APIs ensure compatibility with frontend clients and mobile apps
 

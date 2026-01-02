@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use App\Traits\HttpResponses;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class PasswordUpdateRequest extends FormRequest
 {
@@ -57,10 +58,11 @@ class PasswordUpdateRequest extends FormRequest
      */
     protected function failedValidation(Validator $validator): void
     {
-        $this->error(
-            $validator->errors(),
-            'Password validation failed',
-            422
+        throw new HttpResponseException(
+            response()->json([
+                'message' => 'Password validation failed',
+                'errors' => $validator->errors()
+            ], 422)
         );
     }
 }

@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\VerifyCodeRequest;
 use App\Traits\HttpResponses;
-use App\Models\User;
-use Illuminate\Http\Request;
+use App\Repositories\UserRepositoryInterface;
 use App\Services\Registration\RegistrationService;
 use App\Services\Registration\VerificationService;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -16,28 +16,25 @@ class RegisterController extends Controller
 
     public function __construct(
         private RegistrationService $registrationService,
-        private VerificationService $verificationService
+        private VerificationService $verificationService,
+        private UserRepositoryInterface $userRepository
     ) {}
 
     public function register(StoreUserRequest $request)
     {
         $result = $this->registrationService->createUser($request->validated());
 
-        if (!$result['success']) {
-            return $this->error('', $result['error'], 422);
-        }
-
-        return $this->success([
-            'message' => 'User registered. Verification code sent to email.',
-            'user' => $result['user']
-        ]);
+        return $result['success']
+            ? $this->success([
+                'message' => 'User registered. Verification code sent.',
+                'user' => $result['user']
+              ], 201)
+            : $this->error('', $result['error'], 422);
     }
 
     public function verifyCode(VerifyCodeRequest $request)
     {
-        $user = User::where('email', $request->email)->first();
-
-        if (!$user) {
+        if (!$user = $this->userRepository->findByEmail($request->email)) {
             return $this->error('', 'User not found.', 404);
         }
 
@@ -49,9 +46,8 @@ class RegisterController extends Controller
     public function resendCode(Request $request)
     {
         $request->validate(['email' => 'required|email']);
-        $user = User::where('email', $request->email)->first();
 
-        if (!$user) {
+        if (!$user = $this->userRepository->findByEmail($request->email)) {
             return $this->error('', 'User not found.', 404);
         }
 

@@ -12,4 +12,10 @@ class Podcast extends Model
     {
         return $this->belongsTo(Channel::class);
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+    
 }

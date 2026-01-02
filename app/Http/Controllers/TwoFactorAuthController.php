@@ -2,37 +2,37 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\VerifyCodeRequest;
+use App\Http\Requests\Toggle2FARequest;
+use App\Http\Requests\GenerateVerificationCodeRequest;
+use App\Services\Auth\TwoFactorAuthService;
 use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
-use App\Models\User;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Http\Request;
-use App\Mail\VerificationCodeMail;
 
 class TwoFactorAuthController extends Controller
 {
     use HttpResponses;
 
+    public function __construct(
+        private TwoFactorAuthService $twoFA
+    ) {}
+
+    /**
+     * Verify the 2FA code provided by the user.
+     */
     public function verify2fa(VerifyCodeRequest $request)
     {
-        if (!Auth::check()) {
-            if (!$request->has(['email', 'password'])) {
-                return $this->error('', 'Authentication credentials required', 401);
-            }
+        // Make sure Sanctum middleware is applied so this works:
+        $user = $request->user() ?? Auth::user();
 
-            if (!Auth::attempt($request->only(['email', 'password']))) {
-                return $this->error('', 'Invalid credentials', 401);
-            }
+        if (!$user) {
+            return $this->error('Unauthenticated', 401);
         }
 
-        $user = $request->user() ?? Auth::user();
         $ip = $request->ip();
-        $userAgent = $request->userAgent();
+        $userAgent = Str::limit($request->userAgent(), 120);
 
         if ($request->bearerToken()) {
             $token = $user->currentAccessToken();
@@ -41,67 +41,52 @@ class TwoFactorAuthController extends Controller
                 Log::warning('Invalid 2FA token scope', [
                     'user_id' => $user->id,
                     'ip' => $ip,
-                    'user_agent' => Str::limit($userAgent, 120)
+                    'user_agent' => $userAgent,
                 ]);
-                return $this->error('', 'Invalid authentication token', 403);
+                return $this->error('Invalid authentication token', 403);
             }
         }
 
-        $redisKey = "vc:{$user->id}";
-        [$storedCode, $deleted] = Redis::multi()
-            ->get($redisKey)
-            ->del($redisKey)
-            ->exec();
+        $verified = $this->twoFA->verifyCode($user, $request->code, $ip, $userAgent);
 
-        if (!$storedCode || !hash_equals((string)$storedCode, (string)$request->code)) {
-            Log::warning('Invalid 2FA attempt', [
-                'user_id' => $user->id,
-                'ip' => $ip,
-                'failed_code' => $request->code,
-                'expected_code' => $storedCode ? '****' . substr($storedCode, -2) : null
-            ]);
-            return $this->error('', 'Invalid or expired verification code', 422);
+        if (!$verified) {
+            return $this->error('Invalid or expired verification code', 422);
         }
 
+        // Remove temporary 2FA token
         if ($request->bearerToken()) {
             $user->currentAccessToken()->delete();
         }
 
-        Log::info('2FA verification succeeded', [
-            'user_id' => $user->id,
-            'ip' => $ip,
-            'device' => Str::limit($userAgent, 120)
-        ]);
-
-        return app('App\Http\Controllers\AuthController')->generateUserTokens($user);
+        // Login the user and return full access token
+        $authController = app(AuthController::class);
+        return $authController->loginFrom2FA($user);
     }
 
-    public function toggle2fa(Request $request)
+    /**
+     * Toggle 2FA on or off for the authenticated user.
+     */
+    public function toggle2fa(Toggle2FARequest $request)
     {
         $user = $request->user();
-        $key = "user:{$user->id}:2fa_enabled";
-
-        if (Redis::exists($key)) {
-            Redis::del($key);
-            $status = 'disabled';
-            Log::info("2FA disabled", ['user_id' => $user->id]);
-        } else {
-            Redis::setex($key, 60 * 60 * 24 * 30, 'true');
-            $status = 'enabled';
-            Log::info("2FA enabled", ['user_id' => $user->id]);
-        }
+        $response = $this->twoFA->toggle2FA($user);
 
         return $this->success([
-            'message' => "Two-factor authentication {$status}.",
-            'is_2fa_enabled' => (int)Redis::exists($key)
+            'message' => "Two-factor authentication {$response['status']}.",
+            'is_2fa_enabled' => $response['is_2fa_enabled']
         ]);
     }
 
-    public function generateVerificationCode(User $user)
+    /**
+     * Generate and send a 2FA verification code to the user's email.
+     */
+    public function generateVerificationCode(GenerateVerificationCodeRequest $request)
     {
-        $code = random_int(100000, 999999);
-        $key = "vc:{$user->id}";
-        Redis::connection()->client()->setex($key, 600, $code);
-        Mail::to($user->email)->send(new VerificationCodeMail($code));
+        $user = $request->user();
+        $this->twoFA->generateAndSendCode($user);
+
+        return $this->success([
+            'message' => 'Verification code sent to your email.',
+        ]);
     }
 }
