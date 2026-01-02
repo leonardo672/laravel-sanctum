@@ -55,4 +55,12 @@ class AuthController extends Controller
 
         return $this->success($tokens, 'Tokens refreshed successfully');
     }
+
+    /**
+     * Complete login after successful 2FA verification.
+     */
+    public function loginFrom2FA($user)
+    {
+        return $this->success($this->authService->generateAuthResponse($user));
+    }
 }

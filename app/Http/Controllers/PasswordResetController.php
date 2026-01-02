@@ -5,22 +5,28 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PasswordResetRequest;
 use App\Http\Requests\PasswordUpdateRequest;
 use App\Traits\HttpResponses;
-use App\Models\User;
+use App\Repositories\UserRepositoryInterface;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
 use App\Mail\PasswordResetMail;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class PasswordResetController extends Controller
 {
     use HttpResponses;
 
+    protected $users;
+
+    public function __construct(UserRepositoryInterface $users)
+    {
+        $this->users = $users;
+    }
+
     public function requestPasswordReset(PasswordResetRequest $request)
     {
-        $user = User::where('email', $request->email)->first();
+        $user = $this->users->findByEmail($request->email);
 
         if (!$user) {
             Log::info('Password reset requested for non-existent email', ['email' => $request->email]);
@@ -64,12 +70,10 @@ class PasswordResetController extends Controller
             return $this->error('', 'Invalid or expired token.', 404);
         }
 
-        $user = User::findOrFail($userId);
-        $user->password = Hash::make($request->password);
-        $user->save();
+        $user = $this->users->findById($userId);
+        $this->users->updatePassword($user, $request->password);
 
         Redis::del("password_reset:{$token}");
-        $user->tokens()->delete();
 
         Log::info('Password updated successfully', ['user_id' => $user->id]);
         return $this->success(['message' => 'Password updated successfully.']);

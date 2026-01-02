@@ -2,80 +2,89 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\StorePodcastRequest;
 use App\Models\Podcast;
 use App\Models\User;
+use App\Traits\HttpResponses;
+use Illuminate\Support\Facades\Log;
 
 class PodcastController extends Controller
 {
-    /**
-     * Store a new podcast or audiobook.
-     */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'audio' => 'required|file|mimes:mp3,wav',
-            'type' => 'required|in:podcast,audiobook',
-        ]);
-
-        $channel = $request->user()->channel;
-
-        if (!$channel) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'You need to create a channel first.'
-            ], 403);
-        }
-
-        $path = $request->file('audio')->store('podcasts', 'public');
-
-        $podcast = $channel->podcasts()->create([
-            'title' => $request->title,
-            'description' => $request->description,
-            'audio_path' => $path,
-            'type' => $request->type,
-        ]);
-
-        return response()->json([
-            'status' => 'success',
-            'podcast' => $podcast,
-        ], 201);
-    }
+    use HttpResponses;
 
     /**
-     * Get all podcasts.
+     * Get all podcasts
      */
     public function index()
     {
-        $podcasts = Podcast::with('channel.user')->latest()->get();
+        try {
+            $podcasts = Podcast::with(['channel.user'])
+                ->latest()
+                ->get();
 
-        return response()->json([
-            'status' => 'success',
-            'podcasts' => $podcasts,
-        ], 200);
+            return $this->success($podcasts);
+
+        } catch (\Exception $e) {
+            Log::error("Podcast index error: {$e->getMessage()}");
+            return $this->error('Failed to retrieve podcasts', 500);
+        }
     }
 
     /**
-     * Get podcasts by user ID.
+     * Store a new podcast
      */
-    public function userPodcasts($userId)
+    public function store(StorePodcastRequest $request)
     {
-        $user = User::find($userId);
+        try {
+            if (!$request->user()->channel) {
+                return $this->error(
+                    'You need to create a channel first', 
+                    403
+                );
+            }
 
-        if (!$user || !$user->channel) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'User or channel not found.'
-            ], 404);
+            // Store audio file
+            $audioPath = $request->file('audio')->store('podcasts', 'public');
+
+            // Store cover image if provided
+            $coverImagePath = null;
+            if ($request->hasFile('cover_image')) {
+                $coverImagePath = $request->file('cover_image')->store('podcast_covers', 'public');
+            }
+
+            // Create podcast
+            $podcast = $request->user()->channel->podcasts()->create([
+                'title' => $request->validated('title'),
+                'description' => $request->validated('description'),
+                'audio_path' => $audioPath,
+                'cover_image' => $coverImagePath,
+                'type' => $request->validated('type'),
+            ]);
+
+            return $this->created($podcast);
+
+        } catch (\Exception $e) {
+            Log::error("Podcast store error: {$e->getMessage()}");
+            return $this->error('Failed to create podcast', 500);
         }
+    }
 
-        $podcasts = $user->channel->podcasts;
 
-        return response()->json([
-            'status' => 'success',
-            'podcasts' => $podcasts
-        ], 200);
+    /**
+     * Get user's podcasts
+     */
+    public function userPodcasts(int $userId)
+    {
+        try {
+            $user = User::with('channel.podcasts')->find($userId);
+
+            return $user?->channel 
+                ? $this->success($user->channel->podcasts)
+                : $this->notFound('User or channel not found');
+
+        } catch (\Exception $e) {
+            Log::error("User podcasts error [{$userId}]: {$e->getMessage()}");
+            return $this->error('Failed to retrieve user podcasts', 500);
+        }
     }
 }

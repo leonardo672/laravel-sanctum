@@ -2,115 +2,64 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\Media;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\UserMediaUploadRequest;
+use App\Repositories\UserRepositoryInterface;
+use App\Repositories\MediaRepositoryInterface;
+use App\Traits\HandlesMediaMimeTypes;
+use App\Traits\HandlesMediaResponses;
+use Illuminate\Http\JsonResponse;
 
 class UserMediaController extends Controller
 {
-    /**
-     * Upload or update user's profile picture.
-     */
-    public function store(Request $request, $userId)
-    {
-        $validator = Validator::make($request->all(), [
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+    use HandlesMediaMimeTypes, HandlesMediaResponses;
 
-        if ($validator->fails()) {
+    public function __construct(
+        private UserRepositoryInterface $userRepository,
+        private MediaRepositoryInterface $mediaRepository
+    ) {}
+
+    /**
+     * Upload or update user's media (image/audio)
+     */
+    public function store(UserMediaUploadRequest $request, int $userId): JsonResponse
+    {
+        $file = $request->file('media');
+        $user = $this->userRepository->findOrFail($userId);
+
+        if ($this->isImage($file)) {
+            $media = $this->mediaRepository->updateOrCreateUserImage($user, $file);
+        } elseif ($this->isAudio($file)) {
+            $media = $this->mediaRepository->updateOrCreateUserAudio($user, $file);
+        } else {
             return response()->json([
-                'message' => 'Validation failed',
-                'errors' => $validator->errors(),
+                'message' => 'Unsupported media type. Please upload a valid image or audio file.'
             ], 422);
         }
 
-        $file = $request->file('image');
-
-        // Validate actual MIME type using finfo
-        $finfo = finfo_open(FILEINFO_MIME_TYPE);
-        $mimeType = finfo_file($finfo, $file->getRealPath());
-        finfo_close($finfo);
-
-        $allowedMimeTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif'];
-
-        if (!in_array($mimeType, $allowedMimeTypes)) {
-            return response()->json([
-                'message' => 'Invalid image content type.',
-            ], 400);
-        }
-
-        $user = User::findOrFail($userId);
-
-        // Generate unique filename
-        $filename = uniqid() . '.' . $file->getClientOriginalExtension();
-        $path = $file->storeAs('public/users', $filename);
-        $publicPath = str_replace('public/', '', $path);
-
-        // Delete previous image
-        if ($user->media) {
-            Storage::delete('public/' . $user->media->url);
-        }
-
-        // Save or update media record
-        $media = $user->media()->updateOrCreate(
-            ['type' => 'image'],
-            ['url' => $publicPath]
-        );
-
-        return response()->json([
-            'message' => 'Profile picture uploaded successfully',
-            'data' => $media,
-            'url' => $this->getMediaUrl($media),
-        ], 201);
+        return $this->mediaUploadSuccessResponse($media);
     }
 
     /**
-     * Get user's profile picture.
+     * Show user's media
      */
-    public function show($userId)
+    public function show(int $userId): JsonResponse
     {
-        $user = User::with('media')->findOrFail($userId);
+        $media = $this->mediaRepository->getUserMediaWithUrl($userId);
 
-        if (!$user->media) {
-            return response()->json([
-                'message' => 'No profile picture found',
-            ], 404);
+        if (!$media) {
+            return $this->mediaNotFoundResponse();
         }
 
-        return response()->json([
-            'data' => $user->media,
-            'url' => $this->getMediaUrl($user->media),
-        ]);
+        return response()->json(['data' => $media]);
     }
 
     /**
-     * Delete user's profile picture.
+     * Delete user's media
      */
-    public function destroy($userId)
+    public function destroy(int $userId): JsonResponse
     {
-        $user = User::with('media')->findOrFail($userId);
+        $this->mediaRepository->deleteUserMedia($userId);
 
-        if (!$user->media) {
-            return response()->json([
-                'message' => 'No profile picture found to delete',
-            ], 404);
-        }
-
-        Storage::delete('public/' . $user->media->url);
-        $user->media()->delete();
-
-        return response()->json([
-            'message' => 'Profile picture deleted successfully',
-        ]);
-    }
-
-    /**
-     * Get full URL of media.
-     */
-    protected function getMediaUrl(Media $media): string
-    {
-        return asset('storage/' . $media->url);
+        return $this->mediaDeleteSuccessResponse();
     }
 }
