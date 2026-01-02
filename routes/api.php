@@ -6,7 +6,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\TwoFactorAuthController;
-use App\Http\Controllers\UserMediaController; // Add this line
+use App\Http\Controllers\UserMediaController; 
+use App\Http\Controllers\ChannelController;
+use App\Http\Controllers\PodcastController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,4 +53,20 @@ Route::middleware('auth:sanctum')->group(function () {
         // Delete profile picture
         Route::delete('/media', [UserMediaController::class, 'destroy']);
     });
+
+    // Create a new channel for authenticated user
+    Route::post('/channels', [ChannelController::class, 'store']);
+
+    // Get the authenticated user's channel
+    Route::get('/channels', [ChannelController::class, 'show']);
+
+    // Create podcast (upload audio) under user's channel
+    Route::post('/podcasts', [PodcastController::class, 'store']);
+
+    Route::get('/podcasts', [PodcastController::class, 'index']);
+
+    // Get all podcasts by a specific user
+    Route::get('/users/{id}/podcasts', [PodcastController::class, 'userPodcasts']);
+
 });
+

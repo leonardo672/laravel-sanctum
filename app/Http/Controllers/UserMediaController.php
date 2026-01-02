@@ -11,132 +11,105 @@ use Illuminate\Support\Facades\Validator;
 class UserMediaController extends Controller
 {
     /**
-     * Upload or update user's profile picture
-     *
-     * @param Request $request
-     * @param int $userId
-     * @return \Illuminate\Http\JsonResponse
+     * Upload or update user's profile picture.
      */
     public function store(Request $request, $userId)
     {
-        // Validate the incoming request
         $validator = Validator::make($request->all(), [
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // 2MB max
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         if ($validator->fails()) {
             return response()->json([
                 'message' => 'Validation failed',
-                'errors' => $validator->errors()
+                'errors' => $validator->errors(),
             ], 422);
         }
 
-        try {
-            $user = User::findOrFail($userId);
+        $file = $request->file('image');
 
-            // Store the uploaded file
-            $path = $request->file('image')->store('public/users');
+        // Validate actual MIME type using finfo
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        $mimeType = finfo_file($finfo, $file->getRealPath());
+        finfo_close($finfo);
 
-            // Remove 'public/' from the path for web access
-            $publicPath = str_replace('public/', '', $path);
+        $allowedMimeTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif'];
 
-            // Delete old media if exists
-            if ($user->media) {
-                Storage::delete('public/' . $user->media->url);
-            }
-
-            // Create or update media record
-            $media = $user->media()->updateOrCreate(
-                ['type' => 'image'],
-                ['url' => $publicPath]
-            );
-
+        if (!in_array($mimeType, $allowedMimeTypes)) {
             return response()->json([
-                'message' => 'Profile picture uploaded successfully',
-                'data' => $media,
-                'url' => asset('storage/' . $publicPath) // Full accessible URL
-            ], 201);
-
-        } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'Failed to upload profile picture',
-                'error' => $e->getMessage()
-            ], 500);
+                'message' => 'Invalid image content type.',
+            ], 400);
         }
+
+        $user = User::findOrFail($userId);
+
+        // Generate unique filename
+        $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+        $path = $file->storeAs('public/users', $filename);
+        $publicPath = str_replace('public/', '', $path);
+
+        // Delete previous image
+        if ($user->media) {
+            Storage::delete('public/' . $user->media->url);
+        }
+
+        // Save or update media record
+        $media = $user->media()->updateOrCreate(
+            ['type' => 'image'],
+            ['url' => $publicPath]
+        );
+
+        return response()->json([
+            'message' => 'Profile picture uploaded successfully',
+            'data' => $media,
+            'url' => $this->getMediaUrl($media),
+        ], 201);
     }
 
     /**
-     * Get user's profile picture
-     *
-     * @param int $userId
-     * @return \Illuminate\Http\JsonResponse
+     * Get user's profile picture.
      */
     public function show($userId)
     {
-        try {
-            $user = User::with('media')->findOrFail($userId);
+        $user = User::with('media')->findOrFail($userId);
 
-            if (!$user->media) {
-                return response()->json([
-                    'message' => 'No profile picture found'
-                ], 404);
-            }
-
+        if (!$user->media) {
             return response()->json([
-                'data' => $user->media,
-                'url' => asset('storage/' . $user->media->url)
-            ]);
-
-        } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'Failed to retrieve profile picture',
-                'error' => $e->getMessage()
-            ], 500);
+                'message' => 'No profile picture found',
+            ], 404);
         }
+
+        return response()->json([
+            'data' => $user->media,
+            'url' => $this->getMediaUrl($user->media),
+        ]);
     }
 
     /**
-     * Delete user's profile picture
-     *
-     * @param int $userId
-     * @return \Illuminate\Http\JsonResponse
+     * Delete user's profile picture.
      */
     public function destroy($userId)
     {
-        try {
-            $user = User::with('media')->findOrFail($userId);
+        $user = User::with('media')->findOrFail($userId);
 
-            if (!$user->media) {
-                return response()->json([
-                    'message' => 'No profile picture found to delete'
-                ], 404);
-            }
-
-            // Delete file from storage
-            Storage::delete('public/' . $user->media->url);
-
-            // Delete media record
-            $user->media()->delete();
-
+        if (!$user->media) {
             return response()->json([
-                'message' => 'Profile picture deleted successfully'
-            ]);
-
-        } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'Failed to delete profile picture',
-                'error' => $e->getMessage()
-            ], 500);
+                'message' => 'No profile picture found to delete',
+            ], 404);
         }
+
+        Storage::delete('public/' . $user->media->url);
+        $user->media()->delete();
+
+        return response()->json([
+            'message' => 'Profile picture deleted successfully',
+        ]);
     }
 
     /**
-     * Get the full URL for a stored media file
-     *
-     * @param Media $media
-     * @return string
+     * Get full URL of media.
      */
-    protected function getMediaUrl(Media $media)
+    protected function getMediaUrl(Media $media): string
     {
         return asset('storage/' . $media->url);
     }

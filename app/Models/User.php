@@ -48,4 +48,10 @@ class User extends Authenticatable
         return $this->morphOne(Media::class, 'mediable');
     }
 
+    public function channel()
+    {
+        return $this->hasOne(Channel::class);
+    }
+
+
 }

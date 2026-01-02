@@ -1,0 +1,1248 @@
+{
+  "testfully": "1.19.0",
+  "createdAt": "2025-05-18T23:22:41.1863853Z",
+  "folders": [
+    {
+      "id": "700760087",
+      "parentId": null,
+      "name": "Authentication",
+      "sortNumber": 1747591350235,
+      "executionMode": "NOT_SET",
+      "variables": [],
+      "headers": [],
+      "params": [],
+      "authentication": {
+        "type": "NOT_SET"
+      },
+      "proxy": {
+        "type": "NOT_SET",
+        "server": null
+      },
+      "beforeScript": "",
+      "afterScript": "",
+      "timeout": 0,
+      "delay": 0,
+      "sslVerification": "NOT_SET",
+      "followRedirects": "NOT_SET",
+      "maxRedirects": 0,
+      "history": "NOT_SET"
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "636314227",
+      "parentFolderId": "700760087",
+      "title": "http://127.0.0.1:8000/api/Upload_Profile_Picture",
+      "sortNumber": 1747591350304000,
+      "steps": [
+        {
+          "id": "479507212",
+          "title": "http://127.0.0.1:8000/api/Upload_Profile_Picture",
+          "url": "http://127.0.0.1:8000/api/users/2/media",
+          "method": "POST",
+          "type": "NONE",
+          "headers": [
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "included": false
+            },
+            {
+              "key": "Accept",
+              "value": "application/json",
+              "included": true
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "included": true
+            }
+          ],
+          "params": [],
+          "authentication": {
+            "type": "BEARER_TOKEN",
+            "bearerToken": {
+              "token": "7|1YIimhUFqHssScJHkQ7BMDFsG7nKpEKrfKH28L2ne74f035c",
+              "prefix": "Bearer",
+              "bearer": "Authorization"
+            }
+          },
+          "sslVerification": "NOT_SET",
+          "followRedirects": "NOT_SET",
+          "maxRedirects": 0,
+          "history": "NOT_SET",
+          "body": {
+            "json": null,
+            "xml": null,
+            "html": null,
+            "yaml": null,
+            "javascript": null,
+            "text": null,
+            "raw": null,
+            "graphqlQuery": null,
+            "graphqlVariables": null,
+            "form": null,
+            "binary": null
+          },
+          "beforeScript": "",
+          "afterScript": "",
+          "timeout": 0,
+          "validations": []
+        }
+      ]
+    },
+    {
+      "id": "2098699006",
+      "parentFolderId": "700760087",
+      "title": "http://127.0.0.1:8000/api/logout",
+      "sortNumber": 1747591350313000,
+      "steps": [
+        {
+          "id": "1975446423",
+          "title": "http://127.0.0.1:8000/api/logout",
+          "url": "http://127.0.0.1:8000/api/logout",
+          "method": "POST",
+          "type": "NONE",
+          "headers": [
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "included": false
+            },
+            {
+              "key": "Accept",
+              "value": "application/json",
+              "included": true
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "included": true
+            },
+            {
+              "key": "Authorization",
+              "value": "",
+              "included": false
+            }
+          ],
+          "params": [],
+          "authentication": {
+            "type": "BEARER_TOKEN",
+            "bearerToken": {
+              "token": "42|7zEAdLvA34P8q3jD7v2QQ0clxq5ux3nrOk7emyYb9cc555f0",
+              "prefix": "Bearer",
+              "bearer": "Authorization"
+            }
+          },
+          "sslVerification": "NOT_SET",
+          "followRedirects": "NOT_SET",
+          "maxRedirects": 0,
+          "history": "NOT_SET",
+          "body": {
+            "json": null,
+            "xml": null,
+            "html": null,
+            "yaml": null,
+            "javascript": null,
+            "text": null,
+            "raw": null,
+            "graphqlQuery": null,
+            "graphqlVariables": null,
+            "form": null,
+            "binary": null
+          },
+          "beforeScript": "",
+          "afterScript": "",
+          "timeout": 0,
+          "validations": []
+        }
+      ]
+    },
+    {
+      "id": "1245303113",
+      "parentFolderId": "700760087",
+      "title": "http://127.0.0.1:8000/api/validate-reset-token",
+      "sortNumber": 1747591350321000,
+      "steps": [
+        {
+          "id": "1122050658",
+          "title": "http://127.0.0.1:8000/api/validate-reset-token",
+          "url": "http://127.0.0.1:8000/api/validate-reset-token",
+          "method": "GET",
+          "type": "NONE",
+          "headers": [
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "included": false
+            },
+            {
+              "key": "Accept",
+              "value": "application/json",
+              "included": true
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "included": true
+            }
+          ],
+          "params": [
+            {
+              "key": "token",
+              "value": "Z9URFy90yuh4ILGTgDPmQo7bIDEswSfG58By6epS9OSysbDBq7HKCYcpGzXz",
+              "included": true
+            }
+          ],
+          "authentication": {
+            "type": "NOT_SET"
+          },
+          "sslVerification": "NOT_SET",
+          "followRedirects": "NOT_SET",
+          "maxRedirects": 0,
+          "history": "NOT_SET",
+          "body": {
+            "json": null,
+            "xml": null,
+            "html": null,
+            "yaml": null,
+            "javascript": null,
+            "text": null,
+            "raw": null,
+            "graphqlQuery": null,
+            "graphqlVariables": null,
+            "form": null,
+            "binary": null
+          },
+          "beforeScript": "",
+          "afterScript": "",
+          "timeout": 0,
+          "validations": []
+        }
+      ]
+    },
+    {
+      "id": "1002788518",
+      "parentFolderId": "700760087",
+      "title": "http://127.0.0.1:8000/api/register",
+      "sortNumber": 1747591350239000,
+      "steps": [
+        {
+          "id": "845981311",
+          "title": "http://127.0.0.1:8000/api/register",
+          "url": "http://127.0.0.1:8000/api/register",
+          "method": "POST",
+          "type": "JSON",
+          "headers": [
+            {
+              "key": "Accept",
+              "value": "application/json",
+              "included": true
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "included": true
+            }
+          ],
+          "params": [],
+          "authentication": {
+            "type": "NOT_SET"
+          },
+          "sslVerification": "NOT_SET",
+          "followRedirects": "NOT_SET",
+          "maxRedirects": 0,
+          "history": "NOT_SET",
+          "body": {
+            "json": "{\n  \"name\": \"ERT242121\",\n  \"email\": \"ERT4212211@example.com\",\n  \"password\": \"Password123!!\",\n\t\"password_confirmation\": \"Password123!!\"\n}",
+            "xml": null,
+            "html": null,
+            "yaml": null,
+            "javascript": null,
+            "text": null,
+            "raw": null,
+            "graphqlQuery": null,
+            "graphqlVariables": null,
+            "form": null,
+            "binary": null
+          },
+          "beforeScript": "",
+          "afterScript": "",
+          "timeout": 0,
+          "validations": []
+        }
+      ]
+    },
+    {
+      "id": "284134705",
+      "parentFolderId": "700760087",
+      "title": "http://127.0.0.1:8000/api/verify-code",
+      "sortNumber": 1747591350250000,
+      "steps": [
+        {
+          "id": "194436810",
+          "title": "http://127.0.0.1:8000/api/verify-code",
+          "url": "http://127.0.0.1:8000/api/verify-code",
+          "method": "POST",
+          "type": "JSON",
+          "headers": [
+            {
+              "key": "Accept",
+              "value": "application/json",
+              "included": true
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "included": true
+            }
+          ],
+          "params": [],
+          "authentication": {
+            "type": "NOT_SET"
+          },
+          "sslVerification": "NOT_SET",
+          "followRedirects": "NOT_SET",
+          "maxRedirects": 0,
+          "history": "NOT_SET",
+          "body": {
+            "json": "{\n  \"email\": \"ERT11@example.com\",\n  \"code\": \"681713\"  \n}",
+            "xml": null,
+            "html": null,
+            "yaml": null,
+            "javascript": null,
+            "text": null,
+            "raw": null,
+            "graphqlQuery": null,
+            "graphqlVariables": null,
+            "form": null,
+            "binary": null
+          },
+          "beforeScript": "",
+          "afterScript": "",
+          "timeout": 0,
+          "validations": []
+        }
+      ]
+    },
+    {
+      "id": "1745995196",
+      "parentFolderId": "700760087",
+      "title": "http://127.0.0.1:8000/api/resend-code",
+      "sortNumber": 1747591350259000,
+      "steps": [
+        {
+          "id": "1622742357",
+          "title": "http://127.0.0.1:8000/api/resend-code",
+          "url": "http://127.0.0.1:8000/api/resend-code",
+          "method": "POST",
+          "type": "JSON",
+          "headers": [
+            {
+              "key": "Accept",
+              "value": "application/json",
+              "included": true
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "included": true
+            }
+          ],
+          "params": [],
+          "authentication": {
+            "type": "NOT_SET"
+          },
+          "sslVerification": "NOT_SET",
+          "followRedirects": "NOT_SET",
+          "maxRedirects": 0,
+          "history": "NOT_SET",
+          "body": {
+            "json": "{\n  \"email\": \"ERT11@example.com\"\n}\n\n",
+            "xml": null,
+            "html": null,
+            "yaml": null,
+            "javascript": null,
+            "text": null,
+            "raw": null,
+            "graphqlQuery": null,
+            "graphqlVariables": null,
+            "form": null,
+            "binary": null
+          },
+          "beforeScript": "",
+          "afterScript": "",
+          "timeout": 0,
+          "validations": []
+        }
+      ]
+    },
+    {
+      "id": "1095007239",
+      "parentFolderId": "700760087",
+      "title": "http://127.0.0.1:8000/api/login",
+      "sortNumber": 1747591350268000,
+      "steps": [
+        {
+          "id": "971197728",
+          "title": "http://127.0.0.1:8000/api/login",
+          "url": "http://127.0.0.1:8000/api/login",
+          "method": "POST",
+          "type": "JSON",
+          "headers": [
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "included": false
+            },
+            {
+              "key": "Accept",
+              "value": "application/json",
+              "included": true
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "included": true
+            }
+          ],
+          "params": [],
+          "authentication": {
+            "type": "NOT_SET"
+          },
+          "sslVerification": "NOT_SET",
+          "followRedirects": "NOT_SET",
+          "maxRedirects": 0,
+          "history": "NOT_SET",
+          "body": {
+            "json": "{\n  \"email\": \"ERT11@example.com\",\n  \"password\": \"21!788789654\"\n}",
+            "xml": null,
+            "html": null,
+            "yaml": null,
+            "javascript": null,
+            "text": null,
+            "raw": null,
+            "graphqlQuery": null,
+            "graphqlVariables": null,
+            "form": null,
+            "binary": null
+          },
+          "beforeScript": "",
+          "afterScript": "",
+          "timeout": 0,
+          "validations": []
+        }
+      ]
+    },
+    {
+      "id": "510571666",
+      "parentFolderId": "700760087",
+      "title": "http://127.0.0.1:8000/api/refresh-token",
+      "sortNumber": 1747591350277000,
+      "steps": [
+        {
+          "id": "286623147",
+          "title": "http://127.0.0.1:8000/api/refresh-token",
+          "url": "http://127.0.0.1:8000/api/refresh-token",
+          "method": "POST",
+          "type": "JSON",
+          "headers": [
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "included": false
+            },
+            {
+              "key": "Accept",
+              "value": "application/json",
+              "included": true
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "included": true
+            }
+          ],
+          "params": [],
+          "authentication": {
+            "type": "NOT_SET"
+          },
+          "sslVerification": "NOT_SET",
+          "followRedirects": "NOT_SET",
+          "maxRedirects": 0,
+          "history": "NOT_SET",
+          "body": {
+            "json": "{\n  \"refresh_token\": \"3Pxty28XJsYRY0QDRsmGNkdx8qRM5MRk6JSJueds6qvo1zPps9sS6rlMwYNp\"\n}\n",
+            "xml": null,
+            "html": null,
+            "yaml": null,
+            "javascript": null,
+            "text": null,
+            "raw": null,
+            "graphqlQuery": null,
+            "graphqlVariables": null,
+            "form": null,
+            "binary": null
+          },
+          "beforeScript": "",
+          "afterScript": "",
+          "timeout": 0,
+          "validations": []
+        }
+      ]
+    },
+    {
+      "id": "2005988125",
+      "parentFolderId": "700760087",
+      "title": "http://127.0.0.1:8000/api/forgot-password",
+      "sortNumber": 1747591350286000,
+      "steps": [
+        {
+          "id": "1849179190",
+          "title": "http://127.0.0.1:8000/api/forgot-password",
+          "url": "http://127.0.0.1:8000/api/forgot-password",
+          "method": "POST",
+          "type": "JSON",
+          "headers": [
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "included": false
+            },
+            {
+              "key": "Accept",
+              "value": "application/json",
+              "included": true
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "included": true
+            }
+          ],
+          "params": [],
+          "authentication": {
+            "type": "NOT_SET"
+          },
+          "sslVerification": "NOT_SET",
+          "followRedirects": "NOT_SET",
+          "maxRedirects": 0,
+          "history": "NOT_SET",
+          "body": {
+            "json": "{\n  \"email\": \"ERT11@example.com\"\n}",
+            "xml": null,
+            "html": null,
+            "yaml": null,
+            "javascript": null,
+            "text": null,
+            "raw": null,
+            "graphqlQuery": null,
+            "graphqlVariables": null,
+            "form": null,
+            "binary": null
+          },
+          "beforeScript": "",
+          "afterScript": "",
+          "timeout": 0,
+          "validations": []
+        }
+      ]
+    },
+    {
+      "id": "1287334888",
+      "parentFolderId": "700760087",
+      "title": "http://127.0.0.1:8000/api/Get Authenticated User",
+      "sortNumber": 1747591350295000,
+      "steps": [
+        {
+          "id": "1197634689",
+          "title": "http://127.0.0.1:8000/api/Get Authenticated User",
+          "url": "http://127.0.0.1:8000/api/user",
+          "method": "GET",
+          "type": "NONE",
+          "headers": [
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "included": false
+            },
+            {
+              "key": "Accept",
+              "value": "application/json",
+              "included": true
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "included": true
+            }
+          ],
+          "params": [],
+          "authentication": {
+            "type": "BEARER_TOKEN",
+            "bearerToken": {
+              "token": "6|ZEfP9Vt2QtEDD984kEC2kAfFlDq6r94hoy8XAPLO98ee4a7e",
+              "prefix": "Bearer",
+              "bearer": "Authorization"
+            }
+          },
+          "sslVerification": "NOT_SET",
+          "followRedirects": "NOT_SET",
+          "maxRedirects": 0,
+          "history": "NOT_SET",
+          "body": {
+            "json": null,
+            "xml": null,
+            "html": null,
+            "yaml": null,
+            "javascript": null,
+            "text": null,
+            "raw": null,
+            "graphqlQuery": null,
+            "graphqlVariables": null,
+            "form": null,
+            "binary": null
+          },
+          "beforeScript": "",
+          "afterScript": "",
+          "timeout": 0,
+          "validations": []
+        }
+      ]
+    },
+    {
+      "id": "594282964",
+      "parentFolderId": "700760087",
+      "title": "http://127.0.0.1:8000/api/reset-password",
+      "sortNumber": 1747591350330000,
+      "steps": [
+        {
+          "id": "436951789",
+          "title": "http://127.0.0.1:8000/api/reset-password",
+          "url": "http://127.0.0.1:8000/api/reset-password",
+          "method": "POST",
+          "type": "JSON",
+          "headers": [
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "included": false
+            },
+            {
+              "key": "Accept",
+              "value": "application/json",
+              "included": true
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "included": true
+            }
+          ],
+          "params": [],
+          "authentication": {
+            "type": "NOT_SET"
+          },
+          "sslVerification": "NOT_SET",
+          "followRedirects": "NOT_SET",
+          "maxRedirects": 0,
+          "history": "NOT_SET",
+          "body": {
+            "json": "{\n  \"token\": \"Z9URFy90yuh4ILGTgDPmQo7bIDEswSfG58By6epS9OSysbDBq7HKCYcpGzXz\",\n  \"password\": \"21!788789654\",\n  \"password_confirmation\": \"21!788789654\"\n}",
+            "xml": null,
+            "html": null,
+            "yaml": null,
+            "javascript": null,
+            "text": null,
+            "raw": null,
+            "graphqlQuery": null,
+            "graphqlVariables": null,
+            "form": null,
+            "binary": null
+          },
+          "beforeScript": "",
+          "afterScript": "",
+          "timeout": 0,
+          "validations": []
+        }
+      ]
+    },
+    {
+      "id": "2023112799",
+      "parentFolderId": "700760087",
+      "title": "http://127.0.0.1:8000/api/toggle-2fa",
+      "sortNumber": 1747591350339000,
+      "steps": [
+        {
+          "id": "1933414776",
+          "title": "http://127.0.0.1:8000/api/toggle-2fa",
+          "url": "http://127.0.0.1:8000/api/toggle-2fa",
+          "method": "POST",
+          "type": "NONE",
+          "headers": [
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "included": false
+            },
+            {
+              "key": "Accept",
+              "value": "application/json",
+              "included": true
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "included": true
+            }
+          ],
+          "params": [],
+          "authentication": {
+            "type": "BEARER_TOKEN",
+            "bearerToken": {
+              "token": "3|9GGi6dMIAZIo8KTJ0eghL7rNjDhLnszI0N4Lo20Mbcce6913",
+              "prefix": "Bearer",
+              "bearer": "Authorization"
+            }
+          },
+          "sslVerification": "NOT_SET",
+          "followRedirects": "NOT_SET",
+          "maxRedirects": 0,
+          "history": "NOT_SET",
+          "body": {
+            "json": null,
+            "xml": null,
+            "html": null,
+            "yaml": null,
+            "javascript": null,
+            "text": null,
+            "raw": null,
+            "graphqlQuery": null,
+            "graphqlVariables": null,
+            "form": null,
+            "binary": null
+          },
+          "beforeScript": "",
+          "afterScript": "",
+          "timeout": 0,
+          "validations": []
+        }
+      ]
+    },
+    {
+      "id": "1371076650",
+      "parentFolderId": "700760087",
+      "title": "http://127.0.0.1:8000/api/verify-2fa",
+      "sortNumber": 1747591350347000,
+      "steps": [
+        {
+          "id": "1214761411",
+          "title": "http://127.0.0.1:8000/api/verify-2fa",
+          "url": "http://127.0.0.1:8000/api/verify-2fa",
+          "method": "POST",
+          "type": "JSON",
+          "headers": [
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "included": false
+            },
+            {
+              "key": "Accept",
+              "value": "application/json",
+              "included": true
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "included": true
+            }
+          ],
+          "params": [],
+          "authentication": {
+            "type": "NOT_SET"
+          },
+          "sslVerification": "NOT_SET",
+          "followRedirects": "NOT_SET",
+          "maxRedirects": 0,
+          "history": "NOT_SET",
+          "body": {
+            "json": "{\n  \"email\": \"dans@example.com\",\n  \"password\": \"21!788789654\",\n  \"code\":\"977665\"\n}",
+            "xml": null,
+            "html": null,
+            "yaml": null,
+            "javascript": null,
+            "text": null,
+            "raw": null,
+            "graphqlQuery": null,
+            "graphqlVariables": null,
+            "form": null,
+            "binary": null
+          },
+          "beforeScript": "",
+          "afterScript": "",
+          "timeout": 0,
+          "validations": []
+        }
+      ]
+    },
+    {
+      "id": "786641077",
+      "parentFolderId": "700760087",
+      "title": "http://127.0.0.1:8000/api/Get-Profile-Picture",
+      "sortNumber": 1747591350358000,
+      "steps": [
+        {
+          "id": "562692174",
+          "title": "http://127.0.0.1:8000/api/Get-Profile-Picture",
+          "url": "http://127.0.0.1:8000/api/users/2/media",
+          "method": "GET",
+          "type": "NONE",
+          "headers": [
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "included": false
+            },
+            {
+              "key": "Accept",
+              "value": "application/json",
+              "included": true
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "included": true
+            }
+          ],
+          "params": [],
+          "authentication": {
+            "type": "BEARER_TOKEN",
+            "bearerToken": {
+              "token": "7|1YIimhUFqHssScJHkQ7BMDFsG7nKpEKrfKH28L2ne74f035c",
+              "prefix": "Bearer",
+              "bearer": "Authorization"
+            }
+          },
+          "sslVerification": "NOT_SET",
+          "followRedirects": "NOT_SET",
+          "maxRedirects": 0,
+          "history": "NOT_SET",
+          "body": {
+            "json": null,
+            "xml": null,
+            "html": null,
+            "yaml": null,
+            "javascript": null,
+            "text": null,
+            "raw": null,
+            "graphqlQuery": null,
+            "graphqlVariables": null,
+            "form": null,
+            "binary": null
+          },
+          "beforeScript": "",
+          "afterScript": "",
+          "timeout": 0,
+          "validations": []
+        }
+      ]
+    },
+    {
+      "id": "102067968",
+      "parentFolderId": "700760087",
+      "title": "http://127.0.0.1:8000/api/Delete-Profile-Picture",
+      "sortNumber": 1747591350367000,
+      "steps": [
+        {
+          "id": "2126297305",
+          "title": "http://127.0.0.1:8000/api/Delete-Profile-Picture",
+          "url": "http://127.0.0.1:8000/api/users/2/media",
+          "method": "DELETE",
+          "type": "NONE",
+          "headers": [
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "included": false
+            },
+            {
+              "key": "Accept",
+              "value": "application/json",
+              "included": true
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "included": true
+            }
+          ],
+          "params": [],
+          "authentication": {
+            "type": "BEARER_TOKEN",
+            "bearerToken": {
+              "token": "3|9GGi6dMIAZIo8KTJ0eghL7rNjDhLnszI0N4Lo20Mbcce6913",
+              "prefix": "Bearer",
+              "bearer": "Authorization"
+            }
+          },
+          "sslVerification": "NOT_SET",
+          "followRedirects": "NOT_SET",
+          "maxRedirects": 0,
+          "history": "NOT_SET",
+          "body": {
+            "json": null,
+            "xml": null,
+            "html": null,
+            "yaml": null,
+            "javascript": null,
+            "text": null,
+            "raw": null,
+            "graphqlQuery": null,
+            "graphqlVariables": null,
+            "form": null,
+            "binary": null
+          },
+          "beforeScript": "",
+          "afterScript": "",
+          "timeout": 0,
+          "validations": []
+        }
+      ]
+    },
+    {
+      "id": "1113915802",
+      "parentFolderId": "700760087",
+      "title": "Get the authenticated user's channel",
+      "sortNumber": 1747591350368250,
+      "steps": [
+        {
+          "id": "1158435507",
+          "title": "http://127.0.0.1:8000/api/refresh-token",
+          "url": "http://127.0.0.1:8000/api/channels",
+          "method": "POST",
+          "type": "JSON",
+          "headers": [
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "included": false
+            },
+            {
+              "key": "Accept",
+              "value": "application/json",
+              "included": true
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "included": true
+            }
+          ],
+          "params": [],
+          "authentication": {
+            "type": "BEARER_TOKEN",
+            "bearerToken": {
+              "token": "8|rNesRjx1XX9ydwUZ3LPbJLl3bCmrrPOHSzDpzewhdfa2121d",
+              "prefix": "Bearer",
+              "bearer": "Authorization"
+            }
+          },
+          "sslVerification": "NOT_SET",
+          "followRedirects": "NOT_SET",
+          "maxRedirects": 0,
+          "history": "NOT_SET",
+          "body": {
+            "json": "{\n  \"name\": \"Homam Podcast Channel\",\n  \"description\": \"This is my channel\"\n}\n",
+            "xml": null,
+            "html": null,
+            "yaml": null,
+            "javascript": null,
+            "text": null,
+            "raw": null,
+            "graphqlQuery": null,
+            "graphqlVariables": null,
+            "form": null,
+            "binary": null
+          },
+          "beforeScript": "",
+          "afterScript": "",
+          "timeout": 0,
+          "validations": []
+        }
+      ]
+    },
+    {
+      "id": "378137379",
+      "parentFolderId": "700760087",
+      "title": "Create a new channel for authenticated user",
+      "sortNumber": 1747591350368000,
+      "steps": [
+        {
+          "id": "154219772",
+          "title": "http://127.0.0.1:8000/api/refresh-token",
+          "url": "http://127.0.0.1:8000/api/refresh-token",
+          "method": "POST",
+          "type": "JSON",
+          "headers": [
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "included": false
+            },
+            {
+              "key": "Accept",
+              "value": "application/json",
+              "included": true
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "included": true
+            }
+          ],
+          "params": [],
+          "authentication": {
+            "type": "NOT_SET"
+          },
+          "sslVerification": "NOT_SET",
+          "followRedirects": "NOT_SET",
+          "maxRedirects": 0,
+          "history": "NOT_SET",
+          "body": {
+            "json": "{\n  \"refresh_token\": \"s4IghvdPAelV1b8GAY3fVjhl6rBGOQ01LU1Gze6dxL43vF7Vc2uyJcYhGi8J\"\n}\n",
+            "xml": null,
+            "html": null,
+            "yaml": null,
+            "javascript": null,
+            "text": null,
+            "raw": null,
+            "graphqlQuery": null,
+            "graphqlVariables": null,
+            "form": null,
+            "binary": null
+          },
+          "beforeScript": "",
+          "afterScript": "",
+          "timeout": 0,
+          "validations": []
+        }
+      ]
+    },
+    {
+      "id": "1874600878",
+      "parentFolderId": "700760087",
+      "title": "Create podcast (upload audio) under user's channel",
+      "sortNumber": 1747591350368375,
+      "steps": [
+        {
+          "id": "1717269319",
+          "title": "http://127.0.0.1:8000/api/refresh-token",
+          "url": "http://127.0.0.1:8000/api/channel",
+          "method": "POST",
+          "type": "JSON",
+          "headers": [
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "included": false
+            },
+            {
+              "key": "Accept",
+              "value": "application/json",
+              "included": true
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "included": true
+            }
+          ],
+          "params": [],
+          "authentication": {
+            "type": "BEARER_TOKEN",
+            "bearerToken": {
+              "token": "8|rNesRjx1XX9ydwUZ3LPbJLl3bCmrrPOHSzDpzewhdfa2121d",
+              "prefix": "Bearer",
+              "bearer": "Authorization"
+            }
+          },
+          "sslVerification": "NOT_SET",
+          "followRedirects": "NOT_SET",
+          "maxRedirects": 0,
+          "history": "NOT_SET",
+          "body": {
+            "json": "{\n  \"name\": \"Homam Podcast Channel\",\n  \"description\": \"This is my channel\"\n}\n",
+            "xml": null,
+            "html": null,
+            "yaml": null,
+            "javascript": null,
+            "text": null,
+            "raw": null,
+            "graphqlQuery": null,
+            "graphqlVariables": null,
+            "form": null,
+            "binary": null
+          },
+          "beforeScript": "",
+          "afterScript": "",
+          "timeout": 0,
+          "validations": []
+        }
+      ]
+    },
+    {
+      "id": "1155947065",
+      "parentFolderId": "700760087",
+      "title": " Get all podcasts",
+      "sortNumber": 1747591350368500,
+      "steps": [
+        {
+          "id": "1066249170",
+          "title": "http://127.0.0.1:8000/api/refresh-token",
+          "url": "http://127.0.0.1:8000/api/channels",
+          "method": "POST",
+          "type": "JSON",
+          "headers": [
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "included": false
+            },
+            {
+              "key": "Accept",
+              "value": "application/json",
+              "included": true
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "included": true
+            }
+          ],
+          "params": [],
+          "authentication": {
+            "type": "BEARER_TOKEN",
+            "bearerToken": {
+              "token": "8|rNesRjx1XX9ydwUZ3LPbJLl3bCmrrPOHSzDpzewhdfa2121d",
+              "prefix": "Bearer",
+              "bearer": "Authorization"
+            }
+          },
+          "sslVerification": "NOT_SET",
+          "followRedirects": "NOT_SET",
+          "maxRedirects": 0,
+          "history": "NOT_SET",
+          "body": {
+            "json": "{\n  \"name\": \"Homam Podcast Channel\",\n  \"description\": \"This is my channel\"\n}\n",
+            "xml": null,
+            "html": null,
+            "yaml": null,
+            "javascript": null,
+            "text": null,
+            "raw": null,
+            "graphqlQuery": null,
+            "graphqlVariables": null,
+            "form": null,
+            "binary": null
+          },
+          "beforeScript": "",
+          "afterScript": "",
+          "timeout": 0,
+          "validations": []
+        }
+      ]
+    },
+    {
+      "id": "470323844",
+      "parentFolderId": "700760087",
+      "title": "Get all podcasts by a specific user",
+      "sortNumber": 1747609369401000,
+      "steps": [
+        {
+          "id": "347595357",
+          "title": "http://127.0.0.1:8000/api/refresh-token",
+          "url": "http://127.0.0.1:8000/api/podcasts",
+          "method": "POST",
+          "type": "FORMDATA",
+          "headers": [
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "included": false
+            },
+            {
+              "key": "Accept",
+              "value": "multipart/form-data",
+              "included": true
+            },
+            {
+              "key": "Content-Type",
+              "value": "multipart/form-data",
+              "included": true
+            }
+          ],
+          "params": [],
+          "authentication": {
+            "type": "BEARER_TOKEN",
+            "bearerToken": {
+              "token": "8|rNesRjx1XX9ydwUZ3LPbJLl3bCmrrPOHSzDpzewhdfa2121d",
+              "prefix": "Bearer",
+              "bearer": "Authorization"
+            }
+          },
+          "sslVerification": "NOT_SET",
+          "followRedirects": "NOT_SET",
+          "maxRedirects": 0,
+          "history": "NOT_SET",
+          "body": {
+            "json": null,
+            "xml": null,
+            "html": null,
+            "yaml": null,
+            "javascript": null,
+            "text": null,
+            "raw": null,
+            "graphqlQuery": null,
+            "graphqlVariables": null,
+            "form": [
+              {
+                "name": "title",
+                "value": "My First Podcast",
+                "type": "TEXT",
+                "downloadUrl": "",
+                "contentType": "Text"
+              },
+              {
+                "name": "description",
+                "value": "This is my first episode.",
+                "type": "TEXT",
+                "downloadUrl": "",
+                "contentType": "Text"
+              },
+              {
+                "name": "type",
+                "value": "audiobook",
+                "type": "TEXT",
+                "downloadUrl": "",
+                "contentType": "Text"
+              },
+              {
+                "name": "audio",
+                "value": "The Black Hole Information Paradox.mp3",
+                "type": "FILE",
+                "downloadUrl": "",
+                "contentType": "audio/mpeg"
+              }
+            ],
+            "binary": null
+          },
+          "beforeScript": "",
+          "afterScript": "",
+          "timeout": 0,
+          "validations": []
+        }
+      ]
+    }
+  ]
+}
