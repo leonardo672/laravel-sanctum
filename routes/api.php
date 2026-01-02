@@ -2,11 +2,13 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController; // Correct namespace
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\TwoFactorAuthController;
-
+use App\Http\Controllers\UserMediaController; 
+use App\Http\Controllers\ChannelController;
+use App\Http\Controllers\PodcastController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,4 +41,32 @@ Route::post('/verify-2fa', [TwoFactorAuthController::class, 'verify2fa']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/toggle-2fa', [TwoFactorAuthController::class, 'toggle2fa']);
+    
+    // Add these new media routes within the auth group
+    Route::prefix('users/{user}')->group(function () {
+        // Upload/update profile picture
+        Route::post('/media', [UserMediaController::class, 'store']);
+        
+        // Get profile picture
+        Route::get('/media', [UserMediaController::class, 'show']);
+        
+        // Delete profile picture
+        Route::delete('/media', [UserMediaController::class, 'destroy']);
+    });
+
+    // Create a new channel for authenticated user
+    Route::post('/channels', [ChannelController::class, 'store']);
+
+    // Get the authenticated user's channel
+    Route::get('/channels', [ChannelController::class, 'show']);
+
+    // Create podcast (upload audio) under user's channel
+    Route::post('/podcasts', [PodcastController::class, 'store']);
+
+    Route::get('/podcasts', [PodcastController::class, 'index']);
+
+    // Get all podcasts by a specific user
+    Route::get('/users/{id}/podcasts', [PodcastController::class, 'userPodcasts']);
+
 });
+

@@ -101,5 +101,36 @@ The third version focuses on improving **error handling** and implementing **adv
 - Flexible and scalable database relationships using polymorphic associations  
 - Foundation for future media handling beyond just user images
 
+-----
 
+## V4 Requirements / Updates
+
+The fourth version of the project focuses on **advanced error handling** and the introduction of a **Podcast Channel feature** to expand user functionality.
+
+### 1️⃣ Fixes & Improvements
+- Address all errors and issues highlighted in the **previous task discussion session**
+- Ensure stability, clean code, and adherence to best practices
+
+### 2️⃣ Custom Exception Handler
+- Implement a **custom exception handler** for specific errors in the project
+- Guidelines:
+  - Use Laravel’s **built-in exceptions** when they already cover the error type
+  - Only create a custom exception if necessary
+- Customize exception responses to:
+  - Return **consistent error messages**
+  - Follow the **project's required response format**
+  - Improve debugging and API consistency
+
+### 3️⃣ Podcast Channel Feature
+- Users can create their own **Podcast Channel**, linked to their account
+- Channels serve as a personal space for publishing audio content (podcasts or audiobooks)
+- Functionalities:
+  - Create, manage, and view a user’s channel
+  - Publish content directly to the channel
+- API responses for all actions should be returned **in JSON format only**
+
+### Outcome
+- Improved error handling with clear, consistent responses
+- Extended user functionality with a **personalized content publishing platform**
+- JSON-based APIs ensure compatibility with frontend clients and mobile apps
 
